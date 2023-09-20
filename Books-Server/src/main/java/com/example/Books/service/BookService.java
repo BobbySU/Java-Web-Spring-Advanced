@@ -63,7 +63,7 @@ public class BookService {
         AuthorDTO authorDTO = new AuthorDTO().setId(book.getAuthor().getId()).
                 setName(book.getAuthor().getName());
 
-        return new BookDTO().setId(book.getAuthor().getId()).
+        return new BookDTO().setId(book.getId()).
                 setAuthor(authorDTO).
                 setIsbn(book.getIsbn()).
                 setTitle(book.getTitle());
