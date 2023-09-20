@@ -3,10 +3,7 @@ package com.example.Books.web;
 import com.example.Books.models.dto.BookDTO;
 import com.example.Books.service.BookService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +33,12 @@ public class BookController {
                 theBook.
                         map(ResponseEntity::ok).
                         orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<BookDTO> deleteBookById(@PathVariable("id") Long bookId) {
+        bookService.deleteBookById(bookId);
+        return
+                ResponseEntity.noContent().build();
     }
 }

@@ -39,7 +39,7 @@ public class BookService {
         return authorRepository.save(new Author().setName(authorName));
     }
 
-    public void deleteById(Long bookId) {
+    public void deleteBookById(Long bookId) {
         bookRepository.
                 findById(bookId).
                 ifPresent(bookRepository::delete);
