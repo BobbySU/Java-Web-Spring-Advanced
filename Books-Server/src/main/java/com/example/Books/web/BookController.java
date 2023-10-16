@@ -4,6 +4,8 @@ import com.example.Books.models.dto.BookDTO;
 import com.example.Books.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,5 +42,15 @@ public class BookController {
         bookService.deleteBookById(bookId);
         return
                 ResponseEntity.noContent().build();
+    }
+
+    @PostMapping()
+    public ResponseEntity<BookDTO> createBook(@RequestBody BookDTO newBook,
+                                              UriComponentsBuilder uriComponentsBuilder) {
+        long newBookId = bookService.createBook(newBook);
+
+        return ResponseEntity.created(uriComponentsBuilder.
+                        path("/books/{id}").build(newBookId)).
+                 build();
     }
 }

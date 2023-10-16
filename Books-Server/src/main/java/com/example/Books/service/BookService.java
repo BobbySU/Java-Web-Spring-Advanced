@@ -23,17 +23,17 @@ public class BookService {
         this.authorRepository = authorRepository;
     }
 
-//    public long createBook(BookDTO newBook) {
-//        String authorName = newBook.getAuthor().getName();
-//        Optional<Author> authorOpt = this.authorRepository.findAuthorByName(authorName);
-//
-//        Book newBookEntity = new Book().
-//                setTitle(newBook.getTitle()).
-//                setIsbn(newBook.getIsbn()).
-//                setAuthor(authorOpt.orElseGet(() -> createNewAuthor(authorName)));
-//
-//        return bookRepository.save(newBook).getId();
-//    }
+    public long createBook(BookDTO newBook) {
+        String authorName = newBook.getAuthor().getName();
+        Optional<Author> authorOpt = this.authorRepository.findAuthorByName(authorName);
+
+        Book newBookEntity = new Book().
+                setTitle(newBook.getTitle()).
+                setIsbn(newBook.getIsbn()).
+                setAuthor(authorOpt.orElseGet(() -> createNewAuthor(authorName)));
+
+        return bookRepository.save(newBookEntity).getId();
+    }
 
     private Author createNewAuthor(String authorName) {
         return authorRepository.save(new Author().setName(authorName));
