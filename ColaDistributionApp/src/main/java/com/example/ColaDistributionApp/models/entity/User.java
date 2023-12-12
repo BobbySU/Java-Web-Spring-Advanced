@@ -1,5 +1,6 @@
 package com.example.ColaDistributionApp.models.entity;
 
+import com.example.ColaDistributionApp.models.entity.enums.Position;
 import com.example.ColaDistributionApp.models.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,6 +28,9 @@ public class User extends BaseEntity{
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Position position;
     @Column
     private Date created;
 
