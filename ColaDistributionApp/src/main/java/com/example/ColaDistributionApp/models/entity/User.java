@@ -25,10 +25,8 @@ public class User extends BaseEntity{
     private String fullName;
     @Column(nullable = false, unique = true)
     private String email;
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Position position;
     @Column
@@ -65,6 +63,24 @@ public class User extends BaseEntity{
 
     public User setOrders(List<Order> orders) {
         this.orders = orders;
+        return this;
+    }
+    @Enumerated(EnumType.STRING)
+    public Role getRole() {
+        return role;
+    }
+
+    public User setRole(Role role) {
+        this.role = role;
+        return this;
+    }
+    @Enumerated(EnumType.STRING)
+    public Position getPosition() {
+        return position;
+    }
+
+    public User setPosition(Position position) {
+        this.position = position;
         return this;
     }
 }

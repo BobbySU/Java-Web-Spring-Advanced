@@ -64,4 +64,14 @@ public class Product extends BaseEntity{
         this.shop = shop;
         return this;
     }
+
+    @Enumerated(EnumType.STRING)
+    public Category getCategory() {
+        return category;
+    }
+
+    public Product setCategory(Category category) {
+        this.category = category;
+        return this;
+    }
 }

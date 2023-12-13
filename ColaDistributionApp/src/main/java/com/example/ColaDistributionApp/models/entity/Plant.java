@@ -21,7 +21,6 @@ public class Plant extends BaseEntity{
     private String description;
     @Column(nullable = false)
     private Category category;
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private City city;
 
@@ -45,6 +44,26 @@ public class Plant extends BaseEntity{
 
     public Plant setUser(User user) {
         this.user = user;
+        return this;
+    }
+
+    @Enumerated(EnumType.STRING)
+    public Category getCategory() {
+        return category;
+    }
+
+    public Plant setCategory(Category category) {
+        this.category = category;
+        return this;
+    }
+
+    @Enumerated(EnumType.STRING)
+    public City getCity() {
+        return city;
+    }
+
+    public Plant setCity(City city) {
+        this.city = city;
         return this;
     }
 }

@@ -19,10 +19,8 @@ public class Shop extends BaseEntity{
     private String name;
     @Column(columnDefinition = "TEXT")
     private String description;
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Classification classification;
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private City city;
 
@@ -46,6 +44,24 @@ public class Shop extends BaseEntity{
 
     public Shop setUser(User user) {
         this.user = user;
+        return this;
+    }
+    @Enumerated(EnumType.STRING)
+    public Classification getClassification() {
+        return classification;
+    }
+
+    public Shop setClassification(Classification classification) {
+        this.classification = classification;
+        return this;
+    }
+    @Enumerated(EnumType.STRING)
+    public City getCity() {
+        return city;
+    }
+
+    public Shop setCity(City city) {
+        this.city = city;
         return this;
     }
 }
