@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragmet::head"></head>
+<body>
+<header>
+    <nav th:replace="fragments/fragmet::navigation" class="navbar navbar-expand-lg bg-nav rounded"></nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+    <form class="mx-auto w-25 bg-blur rounded" method="POST" action="/users/register">
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="username" class="h4 mb-2 text-white">Username</label>
+            </div>
+            <input type="text" class="form-control" id="username" name="username"/>
+            <small class="text-danger">Username error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="fullName" class="h4 mb-2 text-white">FullName</label>
+            </div>
+            <input type="text" class="form-control" id="fullName" name="fullName"/>
+            <small class="text-danger">FullName error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="role" class="h4 mb-2 text-white">Role</label>
+            </div>
+            <select id="role" name="role" class="custom-select"
+                    aria-describedby="categoryHelpInline">
+                <option value="" selected>Select Role</option>
+                <option th:each="role : ${T(com.example.ColaDistributionApp.models.entity.enums.Role).values()}"
+                        th:value="${role}" th:text="${role}">
+                </option>
+            </select>
+            <small class="text-danger">Not Selected Role - error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="position" class="h4 mb-2 text-white">Role</label>
+            </div>
+            <select id="position" name="position" class="custom-select"
+                    aria-describedby="categoryHelpInline">
+                <option value="" selected>Select Position</option>
+                <option th:each="position : ${T(com.example.ColaDistributionApp.models.entity.enums.Position).values()}"
+                        th:value="${position}" th:text="${position}">
+                </option>
+            </select>
+            <small class="text-danger">Not Selected Position - error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="email" class="h4 mb-2">Email</label>
+            </div>
+            <input type="email" class="form-control" id="email" name="email"/>
+            <small class="text-danger">Email error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="password" class="h4 mb-2">Password</label>
+            </div>
+            <input type="password" class="form-control" id="password" name="password"/>
+            <small class="text-danger">Password error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+            </div>
+            <input type="password" class="form-control" id="confirmPassword"
+                   name="confirmPassword"/>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Register">Register</button>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="fragments/fragmet::footer" class="footer bg-transparent  py-2"></footer>
+</body>
+</html>
