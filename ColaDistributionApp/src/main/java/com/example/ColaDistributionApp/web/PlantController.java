@@ -28,7 +28,7 @@ public class PlantController {
     }
 
     @PostMapping("/plant")
-    public String postLogin(@Valid @ModelAttribute(name = "plantDTO") PlantDTO plantDTO,
+    public String postPlant(@Valid @ModelAttribute(name = "plantDTO") PlantDTO plantDTO,
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()){

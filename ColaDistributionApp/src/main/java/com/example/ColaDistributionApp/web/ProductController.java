@@ -28,7 +28,7 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public String postLogin(@Valid @ModelAttribute(name = "productDTO") ProductDTO productDTO,
+    public String postProduct(@Valid @ModelAttribute(name = "productDTO") ProductDTO productDTO,
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()){

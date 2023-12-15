@@ -7,15 +7,15 @@ import com.example.ColaDistributionApp.models.entity.enums.Classification;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ShopDTO {
     @Size(min = 5, max = 10)
     @NotNull
@@ -27,8 +27,8 @@ public class ShopDTO {
     private Classification classification;
     @NotNull
     private City city;
-    @NotNull
-    private User user;
+//    @NotNull
+    private UserDTO user;
 
     private List<Product> products;
 }
