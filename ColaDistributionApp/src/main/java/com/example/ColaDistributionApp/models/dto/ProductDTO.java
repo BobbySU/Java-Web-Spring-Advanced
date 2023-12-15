@@ -7,9 +7,7 @@ import com.example.ColaDistributionApp.models.entity.enums.Category;
 import com.example.ColaDistributionApp.models.entity.enums.Pack;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,6 +15,8 @@ import java.util.Date;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ProductDTO {
     @Size(min = 5, max = 10)
     @NotNull
@@ -34,7 +34,7 @@ public class ProductDTO {
     private BigDecimal price;
     @NotNull
     private Date created = new Date();
-    @NotNull
+//    @NotNull
     private Plant plant;
 
     private Order order;

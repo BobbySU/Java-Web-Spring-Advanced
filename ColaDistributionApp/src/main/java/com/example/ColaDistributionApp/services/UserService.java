@@ -49,6 +49,10 @@ public class UserService {
         return this.modelMapper.map(this.userRepository.findByUsername(username).orElse(new User()), UserDTO.class);
     }
 
+    public UserDTO findById(String id) {
+        return this.modelMapper.map(this.userRepository.findById(id).orElse(new User()), UserDTO.class);
+    }
+
     @PostConstruct
     private void postConstructUser() {
         if (userRepository.count() == 0) {
