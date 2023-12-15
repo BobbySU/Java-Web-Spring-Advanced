@@ -6,9 +6,7 @@ import com.example.ColaDistributionApp.models.entity.enums.Category;
 import com.example.ColaDistributionApp.models.entity.enums.City;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,6 +14,8 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class PlantDTO {
     @Size(min = 5, max = 10)
     @NotNull
@@ -27,8 +27,8 @@ public class PlantDTO {
     private Category category;
     @NotNull
     private City city;
-    @NotNull
-    private User user;
+//    @NotNull
+    private UserDTO user;
 
     private List<Product> products;
 }

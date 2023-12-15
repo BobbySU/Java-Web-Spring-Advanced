@@ -35,7 +35,7 @@ public class ProductDTO {
     @NotNull
     private Date created = new Date();
 //    @NotNull
-    private Plant plant;
+    private PlantDTO plant;
 
     private Order order;
     private Shop shop;

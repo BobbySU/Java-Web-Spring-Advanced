@@ -36,10 +36,9 @@ public class ProductService {
                         .price(productDTO.getPrice())
                         .created(productDTO.getCreated())
 //                -- Add Plant
-//                        .plant()
+//                        .plant(userLog.getPlants().get())
                 .build(), Product.class);
 
         this.productRepository.saveAndFlush(product);
-
     }
 }
