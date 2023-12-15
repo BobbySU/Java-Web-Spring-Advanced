@@ -41,6 +41,10 @@ public class UserService {
         this.loggedUser.setId(user.getId());
     }
 
+    public void logoutUser(){
+        loggedUser.clearUser();
+    }
+
     public UserDTO findByUsername(String username) {
         return this.modelMapper.map(this.userRepository.findByUsername(username).orElse(new User()), UserDTO.class);
     }

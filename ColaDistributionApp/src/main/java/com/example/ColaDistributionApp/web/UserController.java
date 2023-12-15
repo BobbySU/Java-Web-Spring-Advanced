@@ -64,6 +64,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/logout")
+    public String getLogout() {
+        this.userService.logoutUser();
+        return "redirect:/";
+    }
+
     @ModelAttribute(name = "userRegisterDTO")
     public UserRegisterDTO userRegisterDTO(){
         return new UserRegisterDTO();
