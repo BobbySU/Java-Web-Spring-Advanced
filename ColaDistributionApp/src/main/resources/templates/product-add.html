@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragmet::head"></head>
+<body>
+<header>
+    <nav th:replace="fragments/fragmet::navigation" class="navbar navbar-expand-lg bg-nav rounded"></nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Product</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+
+    <form th:action="@{/product/product}" th:method="POST" th:object="${productDTO}"
+          class="mx-auto w-25 bg-blur rounded" method="POST" action="/products/add">
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2 text-white">Name</label>
+            </div>
+            <input type="text" class="form-control" id="name" name="name" th:value="*{name}"/>
+            <small th:if="${#fields.hasErrors('name')}" class="text-danger"> Name error</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="description" class="h4 mb-2">Description</label>
+            </div>
+            <textarea
+                    type="text" class="form-control" id="description" name="description" th:value="*{description}" >
+            </textarea>
+            <small th:if="${#fields.hasErrors('description')}" class="text-danger">Description error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="category" class="h4 mb-2 text-white">Category</label>
+            </div>
+            <select id="category" name="category" th:value="*{category}" class="custom-select"
+                    aria-describedby="categoryHelpInline">
+                <option value="" selected>Select Category</option>
+                <option th:each="category : ${T(com.example.ColaDistributionApp.models.entity.enums.Category).values()}"
+                        th:value="${category}" th:text="${category}">
+                </option>
+            </select>
+            <small th:if="${#fields.hasErrors('category')}" class="text-danger">Not Selected Category - error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="quantity" class="h4 mb-2">Quantity</label>
+            </div>
+            <input type="number" min="1" step="1" class="form-control" id="quantity" name="quantity" th:value="*{quantity}"/>
+            <small th:if="${#fields.hasErrors('quantity')}" class="text-danger">Quantity error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="pack" class="h4 mb-2 text-white">Pack</label>
+            </div>
+            <select id="pack" name="pack" th:value="*{pack}" class="custom-select"
+                    aria-describedby="categoryHelpInline">
+                <option value="" selected>Select Pack</option>
+                <option th:each="pack : ${T(com.example.ColaDistributionApp.models.entity.enums.Pack).values()}"
+                        th:value="${pack}" th:text="${pack}">
+                </option>
+            </select>
+            <small th:if="${#fields.hasErrors('pack')}" class="text-danger">Not Selected Pack - error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="price" class="h4 mb-2">Price</label>
+            </div>
+            <input type="number" min="0.1" step="0.1" class="form-control" id="price" name="price" th:value="*{price}"/>
+            <small th:if="${#fields.hasErrors('price')}" class="text-danger">Price error message</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Register">Add Product</button>
+        </div>
+    </form>
+
+</main>
+<footer th:replace="fragments/fragmet::footer" class="footer bg-transparent  py-2"></footer>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragmet::head"></head>
+<body>
+<header>
+    <nav th:replace="fragments/fragmet::navigation" class="navbar navbar-expand-lg bg-nav rounded"></nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Shop</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+
+    <form th:action="@{/shop/shop}" th:method="POST" th:object="${shopDTO}"
+          class="mx-auto w-25 bg-blur rounded" method="POST" action="/products/add">
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2 text-white">Name</label>
+            </div>
+            <input type="text" class="form-control" id="name" name="name" th:value="*{name}"/>
+            <small th:if="${#fields.hasErrors('name')}" class="text-danger"> Name error</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="description" class="h4 mb-2">Description</label>
+            </div>
+            <textarea
+                    type="text" class="form-control" id="description" name="description" th:value="*{description}" >
+            </textarea>
+            <small th:if="${#fields.hasErrors('description')}" class="text-danger">Description error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="classification" class="h4 mb-2 text-white">Classification</label>
+            </div>
+            <select id="classification" name="classification" th:value="*{classification}" class="custom-select"
+                    aria-describedby="categoryHelpInline">
+                <option value="" selected>Select Classification</option>
+                <option th:each="classification : ${T(com.example.ColaDistributionApp.models.entity.enums.Classification).values()}"
+                        th:value="${classification}" th:text="${classification}">
+                </option>
+            </select>
+            <small th:if="${#fields.hasErrors('classification')}" class="text-danger">Not Selected Classification - error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="city" class="h4 mb-2 text-white">City</label>
+            </div>
+            <select id="city" name="city" th:value="*{city}" class="custom-select"
+                    aria-describedby="categoryHelpInline">
+                <option value="" selected>Select City</option>
+                <option th:each="city : ${T(com.example.ColaDistributionApp.models.entity.enums.City).values()}"
+                        th:value="${city}" th:text="${city}">
+                </option>
+            </select>
+            <small th:if="${#fields.hasErrors('city')}" class="text-danger">Not Selected City - error message</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Register">Add Shop</button>
+        </div>
+    </form>
+
+</main>
+<footer th:replace="fragments/fragmet::footer" class="footer bg-transparent  py-2"></footer>
+</body>
+</html>

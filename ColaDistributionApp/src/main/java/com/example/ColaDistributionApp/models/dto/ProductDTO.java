@@ -33,7 +33,7 @@ public class ProductDTO {
     @NotNull
     private BigDecimal price;
     @NotNull
-    private Date created;
+    private Date created = new Date();
     @NotNull
     private Plant plant;
 
