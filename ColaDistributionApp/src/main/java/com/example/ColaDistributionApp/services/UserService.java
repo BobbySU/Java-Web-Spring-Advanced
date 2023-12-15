@@ -1,6 +1,9 @@
 package com.example.ColaDistributionApp.services;
 
+import com.example.ColaDistributionApp.models.dto.LoggedUser;
 import com.example.ColaDistributionApp.models.dto.UserDTO;
+import com.example.ColaDistributionApp.models.dto.UserLoginDTO;
+import com.example.ColaDistributionApp.models.dto.UserRegisterDTO;
 import com.example.ColaDistributionApp.models.entity.User;
 import com.example.ColaDistributionApp.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
@@ -19,13 +22,28 @@ import static com.example.ColaDistributionApp.models.entity.enums.Role.USER;
 public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
+    private final LoggedUser loggedUser;
 
     @Autowired
-    public UserService(UserRepository userRepository, ModelMapper modelMapper) {
+    public UserService(UserRepository userRepository, ModelMapper modelMapper, LoggedUser loggedUser) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
+        this.loggedUser = loggedUser;
     }
 
+    public void registerUser(UserRegisterDTO userRegisterDTO){
+        User user = this.userRepository.saveAndFlush(this.modelMapper.map(userRegisterDTO, User.class));
+        loggedUser.setId(user.getId());
+    }
+
+    public void loginUser(UserLoginDTO userLoginDTO){
+        User user = this.userRepository.findByUsername(userLoginDTO.getUsername()).get();
+        this.loggedUser.setId(user.getId());
+    }
+
+    public UserDTO findByUsername(String username) {
+        return this.modelMapper.map(this.userRepository.findByUsername(username).orElse(new User()), UserDTO.class);
+    }
 
     @PostConstruct
     private void postConstructUser() {

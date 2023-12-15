@@ -5,28 +5,28 @@ import com.example.ColaDistributionApp.models.entity.Plant;
 import com.example.ColaDistributionApp.models.entity.Shop;
 import com.example.ColaDistributionApp.models.entity.enums.Position;
 import com.example.ColaDistributionApp.models.entity.enums.Role;
+import com.example.ColaDistributionApp.validation.PasswordMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class UserDTO {
-    @NotNull
-    private String id;
+@PasswordMatch
+public class UserRegisterDTO {
     @Size(min = 5, max = 10)
     @NotNull
     private String username;
     @Size(min = 5, max = 10)
     @NotNull
     private String password;
+    @Size(min = 5, max = 10)
+    @NotNull
+    private String confirmPassword;
     @Size(min = 5, max = 10)
     @NotNull
     private String fullName;
@@ -38,9 +38,5 @@ public class UserDTO {
     @NotNull
     private Position position;
     @NotNull
-    private Date created;
-
-    private List<Plant> plants;
-    private List<Shop> shops;
-    private List<Order> orders;
+    private Date created = new Date();
 }
