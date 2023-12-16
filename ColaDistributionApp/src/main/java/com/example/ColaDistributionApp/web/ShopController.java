@@ -40,7 +40,7 @@ public class ShopController {
         }
         this.shopService.addShop(shopDTO);
 
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @ModelAttribute(name = "shopDTO")

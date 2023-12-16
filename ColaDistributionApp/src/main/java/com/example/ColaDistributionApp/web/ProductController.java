@@ -39,7 +39,7 @@ public class ProductController {
         }
         this.productService.addProduct(productDTO);
 
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @ModelAttribute(name = "productDTO")

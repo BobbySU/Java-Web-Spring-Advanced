@@ -1,6 +1,7 @@
 package com.example.ColaDistributionApp.web;
 
 import com.example.ColaDistributionApp.models.dto.UserLoginDTO;
+import com.example.ColaDistributionApp.models.dto.UserPassChangeDTO;
 import com.example.ColaDistributionApp.models.dto.UserRegisterDTO;
 import com.example.ColaDistributionApp.services.UserService;
 import jakarta.validation.Valid;
@@ -70,9 +71,24 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/change")
+    @GetMapping("/change-password")
     public String getChange(){
         return "change-password";
+    }
+
+    @PostMapping("/change-password")
+    public String postChange(@Valid @ModelAttribute(name = "userPassChangeDTO") UserPassChangeDTO userPassChangeDTO,
+                            BindingResult bindingResult,
+                            RedirectAttributes redirectAttributes){
+        if (bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute ("userPassChangeDTO", userPassChangeDTO)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userPassChangeDTO",
+                            bindingResult);
+            return "redirect:change-password";
+        }
+        this.userService.changePass(userPassChangeDTO);
+
+        return "redirect:/home";
     }
 
     @ModelAttribute(name = "userRegisterDTO")
@@ -83,5 +99,10 @@ public class UserController {
     @ModelAttribute(name = "userLoginDTO")
     public UserLoginDTO userLoginDTO(){
         return new UserLoginDTO();
+    }
+
+    @ModelAttribute(name = "userPassChangeDTO")
+    public UserPassChangeDTO userPassChangeDTO(){
+        return new UserPassChangeDTO();
     }
 }

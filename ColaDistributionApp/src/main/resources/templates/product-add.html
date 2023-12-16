@@ -9,7 +9,7 @@
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Product</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
 
-    <form th:action="@{/product/product}" th:method="POST" th:object="${productDTO}"
+    <form th:action="@{/product/product-add}" th:method="POST" th:object="${productDTO}"
           class="mx-auto w-25 bg-blur rounded" method="POST" action="/products/add">
 
         <div class="form-group">

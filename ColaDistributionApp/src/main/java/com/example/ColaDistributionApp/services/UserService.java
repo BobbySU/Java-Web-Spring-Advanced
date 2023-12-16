@@ -1,9 +1,6 @@
 package com.example.ColaDistributionApp.services;
 
-import com.example.ColaDistributionApp.models.dto.LoggedUser;
-import com.example.ColaDistributionApp.models.dto.UserDTO;
-import com.example.ColaDistributionApp.models.dto.UserLoginDTO;
-import com.example.ColaDistributionApp.models.dto.UserRegisterDTO;
+import com.example.ColaDistributionApp.models.dto.*;
 import com.example.ColaDistributionApp.models.entity.User;
 import com.example.ColaDistributionApp.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
@@ -12,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 
 import static com.example.ColaDistributionApp.models.entity.enums.Position.MANUFACTURER;
 import static com.example.ColaDistributionApp.models.entity.enums.Position.SELLER;
@@ -33,7 +31,6 @@ public class UserService {
 
     public void registerUser(UserRegisterDTO userRegisterDTO){
         User user = this.userRepository.saveAndFlush(this.modelMapper.map(userRegisterDTO, User.class));
-        loggedUser.setId(user.getId());
     }
 
     public void loginUser(UserLoginDTO userLoginDTO){
@@ -51,6 +48,12 @@ public class UserService {
 
     public UserDTO findById(String id) {
         return this.modelMapper.map(this.userRepository.findById(id).orElse(new User()), UserDTO.class);
+    }
+
+    public void changePass(UserPassChangeDTO userPassChangeDTO) {
+        User changeUser = userRepository.findById(loggedUser.getId()).get();
+        changeUser.setPassword(userPassChangeDTO.getPassword());
+        this.userRepository.saveAndFlush(changeUser);
     }
 
     @PostConstruct

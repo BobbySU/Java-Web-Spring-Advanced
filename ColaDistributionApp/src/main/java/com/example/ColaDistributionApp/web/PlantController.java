@@ -39,7 +39,7 @@ public class PlantController {
         }
         this.plantService.addPlant(plantDTO);
 
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @ModelAttribute(name = "plantDTO")
