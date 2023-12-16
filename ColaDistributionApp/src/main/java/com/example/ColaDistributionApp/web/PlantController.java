@@ -22,12 +22,12 @@ public class PlantController {
         this.plantService = plantService;
     }
 
-    @GetMapping("/plant")
+    @GetMapping("/plant-add")
     public String getPlant() {
         return "plant-add";
     }
 
-    @PostMapping("/plant")
+    @PostMapping("/plant-add")
     public String postPlant(@Valid @ModelAttribute(name = "plantDTO") PlantDTO plantDTO,
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes){
@@ -35,7 +35,7 @@ public class PlantController {
             redirectAttributes.addFlashAttribute ("plantDTO", plantDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.plantDTO",
                             bindingResult);
-            return "redirect:plant";
+            return "redirect:plant-add";
         }
         this.plantService.addPlant(plantDTO);
 

@@ -15,9 +15,9 @@
 
     <nav th:fragment="navigation" class="navbar navbar-expand-lg bg-nav rounded">
         <a class="nav-link text-white active h5" th:href="@{/home}" >Home</a>
-        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/product/product}">Create Product</a>
-        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/plant/plant}">Create Plant</a>
-        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/shop/shop}">Create Shop</a>
+        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/product/product-add}">Create Product</a>
+        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/plant/plant-add}">Create Plant</a>
+        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/shop/shop-add}">Create Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

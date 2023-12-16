@@ -22,12 +22,12 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("product")
+    @GetMapping("product-add")
     public String getProduct(LoggedUser loggedUser) {
         return "product-add";
     }
 
-    @PostMapping("/product")
+    @PostMapping("/product-add")
     public String postProduct(@Valid @ModelAttribute(name = "productDTO") ProductDTO productDTO,
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes){
@@ -35,7 +35,7 @@ public class ProductController {
             redirectAttributes.addFlashAttribute ("productDTO", productDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.productDTO",
                             bindingResult);
-            return "redirect:product";
+            return "redirect:product-add";
         }
         this.productService.addProduct(productDTO);
 

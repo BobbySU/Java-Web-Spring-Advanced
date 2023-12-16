@@ -23,12 +23,12 @@ public class ShopController {
         this.shopService = shopService;
     }
 
-    @GetMapping("shop")
+    @GetMapping("shop-add")
     public String getShop(LoggedUser loggedUser) {
         return "shop-add";
     }
 
-    @PostMapping("/shop")
+    @PostMapping("/shop-add")
     public String postShop(@Valid @ModelAttribute(name = "shopDTO") ShopDTO shopDTO,
                             BindingResult bindingResult,
                             RedirectAttributes redirectAttributes){
@@ -36,7 +36,7 @@ public class ShopController {
             redirectAttributes.addFlashAttribute ("shopDTO", shopDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.shopDTO",
                             bindingResult);
-            return "redirect:shop";
+            return "redirect:shop-add";
         }
         this.shopService.addShop(shopDTO);
 
