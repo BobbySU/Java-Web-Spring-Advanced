@@ -70,6 +70,11 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/change")
+    public String getChange(){
+        return "change-password";
+    }
+
     @ModelAttribute(name = "userRegisterDTO")
     public UserRegisterDTO userRegisterDTO(){
         return new UserRegisterDTO();
