@@ -61,7 +61,7 @@ public class UserController {
         }
         this.userService.loginUser(userLoginDTO);
 
-        return "redirect:/";
+        return "redirect:/home";
     }
 
     @GetMapping("/logout")
