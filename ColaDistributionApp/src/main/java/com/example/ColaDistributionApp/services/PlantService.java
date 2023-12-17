@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlantService {
     private final PlantRepository plantRepository;
@@ -36,5 +38,13 @@ public class PlantService {
                 .build(), Plant.class);
 
         this.plantRepository.saveAndFlush(plant);
+    }
+
+    public List<Plant> findAllByUserId() {
+        if(loggedUser.isEmpty()){
+            return List.of();
+        }
+        this.plantRepository.findAll();
+        return null;
     }
 }

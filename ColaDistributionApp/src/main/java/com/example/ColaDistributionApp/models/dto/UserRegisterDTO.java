@@ -1,11 +1,8 @@
 package com.example.ColaDistributionApp.models.dto;
 
-import com.example.ColaDistributionApp.models.entity.Order;
-import com.example.ColaDistributionApp.models.entity.Plant;
-import com.example.ColaDistributionApp.models.entity.Shop;
 import com.example.ColaDistributionApp.models.entity.enums.Position;
 import com.example.ColaDistributionApp.models.entity.enums.Role;
-import com.example.ColaDistributionApp.validation.PasswordMatch;
+import com.example.ColaDistributionApp.validation.PasswordMatcher.PasswordMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

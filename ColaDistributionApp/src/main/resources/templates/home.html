@@ -24,6 +24,10 @@
                         Plants</h3>
                     <div class="mt-3 rounded badge-info">
                         <span>Name: {name} Price: {price} lv</span>
+                        <ul th:each="plant : ${allPlants}">
+                           <li th:text="${plant.toString()}"></li>
+                        </ul>
+
                         <a class="ml-3 text-danger" href="/">Buy</a>
                     </div>
                 </div>

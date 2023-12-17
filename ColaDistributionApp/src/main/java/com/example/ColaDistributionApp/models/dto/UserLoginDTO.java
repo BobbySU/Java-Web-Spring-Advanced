@@ -1,6 +1,6 @@
 package com.example.ColaDistributionApp.models.dto;
 
-import com.example.ColaDistributionApp.validation.ValidateLoginForm;
+import com.example.ColaDistributionApp.validation.UserLoginValidator.ValidateLoginForm;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

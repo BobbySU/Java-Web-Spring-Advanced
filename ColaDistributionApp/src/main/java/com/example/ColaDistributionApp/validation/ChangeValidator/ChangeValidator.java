@@ -1,4 +1,4 @@
-package com.example.ColaDistributionApp.validation;
+package com.example.ColaDistributionApp.validation.ChangeValidator;
 
 import com.example.ColaDistributionApp.models.dto.*;
 import com.example.ColaDistributionApp.services.UserService;

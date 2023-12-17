@@ -1,4 +1,4 @@
-package com.example.ColaDistributionApp.validation;
+package com.example.ColaDistributionApp.validation.PasswordMatcher;
 
 
 import com.example.ColaDistributionApp.models.dto.UserRegisterDTO;
