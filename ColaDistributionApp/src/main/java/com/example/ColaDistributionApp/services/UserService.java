@@ -61,6 +61,13 @@ public class UserService {
         this.userRepository.saveAndFlush(changeUser);
     }
 
+    public void changeName(UserNameChangeDTO userNameChangeDTO) {
+        User changeUser = userRepository.findById(loggedUser.getId()).get();
+        changeUser.setUsername(userNameChangeDTO.getUsername());
+        this.userRepository.saveAndFlush(changeUser);
+        this.loggedUser.setUsername(changeUser.getUsername());
+    }
+
     @PostConstruct
     private void postConstructUser() {
         if (userRepository.count() == 0) {

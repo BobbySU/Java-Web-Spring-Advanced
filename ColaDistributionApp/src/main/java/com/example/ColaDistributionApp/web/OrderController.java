@@ -3,7 +3,6 @@ package com.example.ColaDistributionApp.web;
 import com.example.ColaDistributionApp.models.dto.LoggedUser;
 import com.example.ColaDistributionApp.models.dto.UserDTO;
 import com.example.ColaDistributionApp.models.entity.Product;
-import com.example.ColaDistributionApp.models.entity.User;
 import com.example.ColaDistributionApp.services.ProductService;
 import com.example.ColaDistributionApp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,10 @@ public class OrderController {
 
     @ModelAttribute(name = "userProducts")
     public List<Product> userProducts() {
-        UserDTO userDTO = this.userService.findById(loggedUser.getId());
-        return userDTO.getProducts();
+        if (loggedUser.getId() != null){
+            UserDTO userDTO = this.userService.findById(loggedUser.getId());
+            return userDTO.getProducts();
+        }
+        return null;
     }
 }

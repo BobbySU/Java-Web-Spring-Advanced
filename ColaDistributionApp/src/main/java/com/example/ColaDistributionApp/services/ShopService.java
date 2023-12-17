@@ -3,7 +3,6 @@ package com.example.ColaDistributionApp.services;
 import com.example.ColaDistributionApp.models.dto.LoggedUser;
 import com.example.ColaDistributionApp.models.dto.ShopDTO;
 import com.example.ColaDistributionApp.models.dto.UserDTO;
-import com.example.ColaDistributionApp.models.entity.Plant;
 import com.example.ColaDistributionApp.models.entity.Shop;
 import com.example.ColaDistributionApp.repository.ShopRepository;
 import org.modelmapper.ModelMapper;

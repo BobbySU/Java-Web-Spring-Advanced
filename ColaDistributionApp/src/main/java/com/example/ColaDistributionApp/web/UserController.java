@@ -1,7 +1,6 @@
 package com.example.ColaDistributionApp.web;
 
 import com.example.ColaDistributionApp.models.dto.*;
-import com.example.ColaDistributionApp.models.entity.User;
 import com.example.ColaDistributionApp.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +91,26 @@ public class UserController {
         return "redirect:/home";
     }
 
+    @GetMapping("/change-username")
+    public String getNameChange() {
+        return "change-username";
+    }
+
+    @PostMapping("/change-username")
+    public String postNameChange(@Valid @ModelAttribute(name = "userNameChangeDTO") UserNameChangeDTO userNameChangeDTO,
+                             BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userNameChangeDTO", userNameChangeDTO)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userNameChangeDTO",
+                            bindingResult);
+            return "redirect:change-username";
+        }
+        this.userService.changeName(userNameChangeDTO);
+
+        return "redirect:/home";
+    }
+
     @ModelAttribute(name = "userRegisterDTO")
     public UserRegisterDTO userRegisterDTO() {
         return new UserRegisterDTO();
@@ -105,5 +124,10 @@ public class UserController {
     @ModelAttribute(name = "userPassChangeDTO")
     public UserPassChangeDTO userPassChangeDTO() {
         return new UserPassChangeDTO();
+    }
+
+    @ModelAttribute(name = "userNameChangeDTO")
+    public UserNameChangeDTO userNameChangeDTO() {
+        return new UserNameChangeDTO();
     }
 }

@@ -42,6 +42,6 @@ public class Order extends BaseEntity{
 
     @Override
     public String toString(){
-        return String.format("%s  /%s/", created, buyer);
+        return String.format("Order Created: %s - Bayer: %s", created, buyer);
     }
 }
