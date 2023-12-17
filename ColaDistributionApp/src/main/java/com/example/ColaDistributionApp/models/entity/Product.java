@@ -16,25 +16,73 @@ import java.util.Date;
 @Entity
 @Table(name = "products")
 public class Product extends BaseEntity{
-    @Column(nullable = false)
+
     private String name;
-    @Column(columnDefinition = "TEXT")
     private String description;
-    @Column(nullable = false)
     private Category category;
-    @Column(nullable = false)
     private Integer quantity;
-    @Column(nullable = false)
     private Pack pack;
-    @Column(nullable = false)
     private BigDecimal price;
-    @Column(nullable = false)
     private Date created;
 
     private User user;
     private Order order;
     private Plant plant;
     private Shop shop;
+    @Column(nullable = false)
+    public String getName() {
+        return name;
+    }
+
+    public Product setName(String name) {
+        this.name = name;
+        return this;
+    }
+    @Column(columnDefinition = "TEXT")
+    public String getDescription() {
+        return description;
+    }
+
+    public Product setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+    @Column(nullable = false)
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public Product setQuantity(Integer quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+    @Column(nullable = false)
+    public Pack getPack() {
+        return pack;
+    }
+
+    public Product setPack(Pack pack) {
+        this.pack = pack;
+        return this;
+    }
+    @Column(nullable = false)
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public Product setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+    @Column(nullable = false)
+    public Date getCreated() {
+        return created;
+    }
+
+    public Product setCreated(Date created) {
+        this.created = created;
+        return this;
+    }
 
     @ManyToOne
     public Order getOrder() {
@@ -74,7 +122,7 @@ public class Product extends BaseEntity{
         this.user = user;
         return this;
     }
-
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     public Category getCategory() {
         return category;

@@ -17,25 +17,55 @@ import java.util.List;
 @Table(name = "users")
 public class User extends BaseEntity{
 
-    @Column(unique = true, nullable = false)
     private String username;
-    @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
     private String fullName;
-    @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false)
     private Role role;
-    @Column(nullable = false)
     private Position position;
-    @Column
     private Date created;
 
     private List<Plant> plants;
     private List<Shop> shops;
     private List<Order> orders;
     private List<Product> products;
+    @Column(unique = true, nullable = false)
+    public String getUsername() {
+        return username;
+    }
+
+    public User setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+    @Column(nullable = false)
+    public String getPassword() {
+        return password;
+    }
+
+    public User setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+    @Column(nullable = false)
+    public String getFullName() {
+        return fullName;
+    }
+
+    public User setFullName(String fullName) {
+        this.fullName = fullName;
+        return this;
+    }
+    @Column
+    public Date getCreated() {
+        return created;
+    }
+
+    public User setCreated(Date created) {
+        this.created = created;
+        return this;
+    }
+
     @Column(nullable = false, unique = true)
     public String getEmail() {
         return email;
@@ -84,7 +114,7 @@ public class User extends BaseEntity{
         this.products = products;
         return this;
     }
-
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     public Role getRole() {
         return role;
@@ -94,6 +124,7 @@ public class User extends BaseEntity{
         this.role = role;
         return this;
     }
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     public Position getPosition() {
         return position;

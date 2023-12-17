@@ -14,11 +14,21 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity{
-    @Column(nullable = false)
+
     private Date created;
 
     private List<Product> products;
     private User buyer;
+
+    @Column(nullable = false)
+    public Date getCreated() {
+        return created;
+    }
+
+    public Order setCreated(Date created) {
+        this.created = created;
+        return this;
+    }
 
     @OneToMany(mappedBy = "order")
     public List<Product> getProducts() {

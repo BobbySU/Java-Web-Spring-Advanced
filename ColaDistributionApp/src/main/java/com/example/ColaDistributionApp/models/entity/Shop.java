@@ -15,17 +15,32 @@ import java.util.List;
 @Entity
 @Table(name = "shops")
 public class Shop extends BaseEntity{
-    @Column(nullable = false)
+
     private String name;
-    @Column(columnDefinition = "TEXT")
     private String description;
-    @Column(nullable = false)
     private Classification classification;
-    @Column(nullable = false)
     private City city;
 
     private List<Product> products;
     private User user;
+    @Column(nullable = false)
+    public String getName() {
+        return name;
+    }
+
+    public Shop setName(String name) {
+        this.name = name;
+        return this;
+    }
+    @Column(columnDefinition = "TEXT")
+    public String getDescription() {
+        return description;
+    }
+
+    public Shop setDescription(String description) {
+        this.description = description;
+        return this;
+    }
 
     @OneToMany(mappedBy = "shop")
     public List<Product> getProducts() {
@@ -46,6 +61,7 @@ public class Shop extends BaseEntity{
         this.user = user;
         return this;
     }
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     public Classification getClassification() {
         return classification;
@@ -55,6 +71,7 @@ public class Shop extends BaseEntity{
         this.classification = classification;
         return this;
     }
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     public City getCity() {
         return city;
