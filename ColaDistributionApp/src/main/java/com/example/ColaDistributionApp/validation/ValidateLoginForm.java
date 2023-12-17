@@ -1,4 +1,4 @@
-package com.example.ColaDistributionApp.validation.UserLoginValidator;
+package com.example.ColaDistributionApp.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

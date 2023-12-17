@@ -1,4 +1,4 @@
-package com.example.ColaDistributionApp.validation.UserLoginValidator;
+package com.example.ColaDistributionApp.validation;
 
 
 import com.example.ColaDistributionApp.models.dto.UserDTO;
