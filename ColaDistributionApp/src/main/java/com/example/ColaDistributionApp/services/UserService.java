@@ -57,7 +57,7 @@ public class UserService {
 
     public void changePass(UserPassChangeDTO userPassChangeDTO) {
         User changeUser = userRepository.findById(loggedUser.getId()).get();
-        changeUser.setPassword(userPassChangeDTO.getPassword());
+        changeUser.setPassword(passwordEncoder.encode(userPassChangeDTO.getPassword()));
         this.userRepository.saveAndFlush(changeUser);
     }
 
