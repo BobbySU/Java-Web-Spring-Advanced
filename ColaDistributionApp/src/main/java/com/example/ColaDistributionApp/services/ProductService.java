@@ -37,11 +37,11 @@ public class ProductService {
                         .pack(productDTO.getPack())
                         .price(productDTO.getPrice())
                         .created(productDTO.getCreated())
-//                -- Add Plant
 //                        .plant(userLog.getPlants().get())
+                .user(this.userService.findById(loggedUser.getId()))
                 .build(), Product.class);
-
         this.productRepository.saveAndFlush(product);
+        this.userService.findById(loggedUser.getId()).getProducts().add(product);
     }
 
     public List<Product> findAllByUserId() {

@@ -35,6 +35,7 @@ public class User extends BaseEntity{
     private List<Plant> plants;
     private List<Shop> shops;
     private List<Order> orders;
+    private List<Product> products;
 
     @OneToMany(mappedBy = "user")
     public List<Plant> getPlants() {
@@ -65,6 +66,16 @@ public class User extends BaseEntity{
         this.orders = orders;
         return this;
     }
+    @OneToMany(mappedBy = "user")
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public User setProducts(List<Product> products) {
+        this.products = products;
+        return this;
+    }
+
     @Enumerated(EnumType.STRING)
     public Role getRole() {
         return role;

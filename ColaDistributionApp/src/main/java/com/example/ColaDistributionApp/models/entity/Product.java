@@ -31,6 +31,7 @@ public class Product extends BaseEntity{
     @Column(nullable = false)
     private Date created;
 
+    private User user;
     private Order order;
     private Plant plant;
     private Shop shop;
@@ -62,6 +63,15 @@ public class Product extends BaseEntity{
 
     public Product setShop(Shop shop) {
         this.shop = shop;
+        return this;
+    }
+    @ManyToOne
+    public User getUser() {
+        return user;
+    }
+
+    public Product setUser(User user) {
+        this.user = user;
         return this;
     }
 

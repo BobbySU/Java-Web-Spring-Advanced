@@ -3,6 +3,7 @@ package com.example.ColaDistributionApp.models.dto;
 import com.example.ColaDistributionApp.models.entity.Order;
 import com.example.ColaDistributionApp.models.entity.Plant;
 import com.example.ColaDistributionApp.models.entity.Shop;
+import com.example.ColaDistributionApp.models.entity.User;
 import com.example.ColaDistributionApp.models.entity.enums.Category;
 import com.example.ColaDistributionApp.models.entity.enums.Pack;
 import jakarta.validation.constraints.NotNull;
@@ -36,7 +37,7 @@ public class ProductDTO {
     private Date created = new Date();
 //    @NotNull
     private PlantDTO plant;
-
+    private UserDTO user;
     private Order order;
     private Shop shop;
 }

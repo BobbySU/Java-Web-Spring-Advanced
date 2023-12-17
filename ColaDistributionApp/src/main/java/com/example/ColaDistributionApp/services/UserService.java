@@ -65,7 +65,7 @@ public class UserService {
     private void postConstructUser() {
         if (userRepository.count() == 0) {
             this.userRepository.saveAndFlush(this.modelMapper.map(UserDTO.builder()
-                    .username("bobby1")
+                    .username("bobby")
                     .password(passwordEncoder.encode("12345"))
                     .fullName("Bobbyto")
                     .email("bobby@abv.bg")
@@ -74,11 +74,20 @@ public class UserService {
                     .created(new Date())
                     .build(), User.class));
             this.userRepository.saveAndFlush(this.modelMapper.map(UserDTO.builder()
-                    .username("peppy1")
+                    .username("peppy")
                     .password(passwordEncoder.encode("12345"))
                     .fullName("Peppyto")
                     .email("petar@abv.bg")
                     .role(USER)
+                    .position(SELLER)
+                    .created(new Date())
+                    .build(), User.class));
+            this.userRepository.saveAndFlush(this.modelMapper.map(UserDTO.builder()
+                    .username("admin")
+                    .password(passwordEncoder.encode("12345"))
+                    .fullName("Aeppyto")
+                    .email("admin@abv.bg")
+                    .role(ADMINISTRATOR)
                     .position(SELLER)
                     .created(new Date())
                     .build(), User.class));
