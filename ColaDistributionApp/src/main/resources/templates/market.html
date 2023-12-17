@@ -5,7 +5,7 @@
 <header>
     <nav th:replace="fragments/fragmet :: navigation" class="navbar navbar-expand-lg bg-nav rounded"></nav>
 </header>
-<main>
+<main th:unless="${@loggedUser.isEmpty()}">
 
     <div class="container bg-blur rounded mt-5 mb-4">
         <h1>All products by City Markets</h1>

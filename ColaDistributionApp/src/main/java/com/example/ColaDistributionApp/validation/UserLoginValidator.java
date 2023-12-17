@@ -7,13 +7,15 @@ import com.example.ColaDistributionApp.services.UserService;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 public class UserLoginValidator implements ConstraintValidator<ValidateLoginForm, UserLoginDTO> {
-
+    private final PasswordEncoder passwordEncoder;
     private final UserService userService;
 
     @Autowired
-    public UserLoginValidator(UserService userService) {
+    public UserLoginValidator(PasswordEncoder passwordEncoder, UserService userService) {
+        this.passwordEncoder = passwordEncoder;
         this.userService = userService;
     }
 
@@ -25,6 +27,6 @@ public class UserLoginValidator implements ConstraintValidator<ValidateLoginForm
     @Override
     public boolean isValid(UserLoginDTO userLoginDTO, ConstraintValidatorContext constraintValidatorContext) {
         UserDTO userDTO = this.userService.findByUsername(userLoginDTO.getUsername());
-        return userDTO.getId() != null && userDTO.getPassword().equals(userLoginDTO.getPassword());
+        return userDTO.getId() != null && passwordEncoder.matches(userLoginDTO.getPassword(),userDTO.getPassword());
     }
 }

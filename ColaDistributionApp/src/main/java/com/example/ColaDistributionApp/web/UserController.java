@@ -1,8 +1,7 @@
 package com.example.ColaDistributionApp.web;
 
-import com.example.ColaDistributionApp.models.dto.UserLoginDTO;
-import com.example.ColaDistributionApp.models.dto.UserPassChangeDTO;
-import com.example.ColaDistributionApp.models.dto.UserRegisterDTO;
+import com.example.ColaDistributionApp.models.dto.*;
+import com.example.ColaDistributionApp.models.entity.User;
 import com.example.ColaDistributionApp.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,24 +16,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
+    private final LoggedUser loggedUser;
     private final UserService userService;
+
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(LoggedUser loggedUser, UserService userService) {
+        this.loggedUser = loggedUser;
         this.userService = userService;
     }
 
     @GetMapping("/register")
-    public String getRegister(){
+    public String getRegister() {
         return "register";
     }
 
     @PostMapping("/register")
     public String postRegister(@Valid @ModelAttribute(name = "userRegisterDTO") UserRegisterDTO userRegisterDTO,
                                BindingResult bindingResult,
-                               RedirectAttributes redirectAttributes){
-        if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute ("userRegisterDTO", userRegisterDTO)
+                               RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userRegisterDTO", userRegisterDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userRegisterDTO",
                             bindingResult);
             return "redirect:register";
@@ -46,16 +47,16 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLogin(){
+    public String getLogin() {
         return "login";
     }
 
     @PostMapping("/login")
     public String postLogin(@Valid @ModelAttribute(name = "userLoginDTO") UserLoginDTO userLoginDTO,
                             BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes){
-        if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute ("userLoginDTO", userLoginDTO)
+                            RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userLoginDTO", userLoginDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userLoginDTO",
                             bindingResult);
             return "redirect:login";
@@ -72,16 +73,16 @@ public class UserController {
     }
 
     @GetMapping("/change-password")
-    public String getChange(){
+    public String getChange() {
         return "change-password";
     }
 
     @PostMapping("/change-password")
     public String postChange(@Valid @ModelAttribute(name = "userPassChangeDTO") UserPassChangeDTO userPassChangeDTO,
-                            BindingResult bindingResult,
-                            RedirectAttributes redirectAttributes){
-        if (bindingResult.hasErrors()){
-            redirectAttributes.addFlashAttribute ("userPassChangeDTO", userPassChangeDTO)
+                             BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userPassChangeDTO", userPassChangeDTO)
                     .addFlashAttribute("org.springframework.validation.BindingResult.userPassChangeDTO",
                             bindingResult);
             return "redirect:change-password";
@@ -92,17 +93,17 @@ public class UserController {
     }
 
     @ModelAttribute(name = "userRegisterDTO")
-    public UserRegisterDTO userRegisterDTO(){
+    public UserRegisterDTO userRegisterDTO() {
         return new UserRegisterDTO();
     }
 
     @ModelAttribute(name = "userLoginDTO")
-    public UserLoginDTO userLoginDTO(){
+    public UserLoginDTO userLoginDTO() {
         return new UserLoginDTO();
     }
 
     @ModelAttribute(name = "userPassChangeDTO")
-    public UserPassChangeDTO userPassChangeDTO(){
+    public UserPassChangeDTO userPassChangeDTO() {
         return new UserPassChangeDTO();
     }
 }

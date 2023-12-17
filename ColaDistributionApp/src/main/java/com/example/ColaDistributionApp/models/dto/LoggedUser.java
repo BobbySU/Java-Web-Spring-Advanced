@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class LoggedUser {
     private String id;
+    private String username;
     public boolean isEmpty(){
         return this.id == null;
     }

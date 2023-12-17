@@ -6,10 +6,10 @@ import com.example.ColaDistributionApp.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Optional;
 
 import static com.example.ColaDistributionApp.models.entity.enums.Position.MANUFACTURER;
 import static com.example.ColaDistributionApp.models.entity.enums.Position.SELLER;
@@ -21,21 +21,26 @@ public class UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final LoggedUser loggedUser;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, ModelMapper modelMapper, LoggedUser loggedUser) {
+    public UserService(UserRepository userRepository, ModelMapper modelMapper, LoggedUser loggedUser, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.loggedUser = loggedUser;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void registerUser(UserRegisterDTO userRegisterDTO){
-        User user = this.userRepository.saveAndFlush(this.modelMapper.map(userRegisterDTO, User.class));
+        User user = this.modelMapper.map(userRegisterDTO, User.class);
+        user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+        this.userRepository.saveAndFlush(user);
     }
 
     public void loginUser(UserLoginDTO userLoginDTO){
         User user = this.userRepository.findByUsername(userLoginDTO.getUsername()).get();
         this.loggedUser.setId(user.getId());
+        this.loggedUser.setUsername(user.getUsername());
     }
 
     public void logoutUser(){
@@ -58,10 +63,10 @@ public class UserService {
 
     @PostConstruct
     private void postConstructUser() {
-        if (userRepository.count() == 0) {
+        if (userRepository.count() < 5) {
             this.userRepository.saveAndFlush(this.modelMapper.map(UserDTO.builder()
-                    .username("bobby")
-                    .password("12345")
+                    .username("bobby1")
+                    .password(passwordEncoder.encode("12345"))
                     .fullName("Bobbyto")
                     .email("bobby@abv.bg")
                     .role(ADMINISTRATOR)
@@ -69,8 +74,8 @@ public class UserService {
                     .created(new Date())
                     .build(), User.class));
             this.userRepository.saveAndFlush(this.modelMapper.map(UserDTO.builder()
-                    .username("peppy")
-                    .password("12345")
+                    .username("peppy1")
+                    .password(passwordEncoder.encode("12345"))
                     .fullName("Peppyto")
                     .email("petar@abv.bg")
                     .role(USER)

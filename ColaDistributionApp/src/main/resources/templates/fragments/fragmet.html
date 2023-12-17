@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extrass/spring-security">
 
 <head th:fragment="head">
     <meta charset="UTF-8"/>
@@ -15,13 +16,19 @@
 
     <nav th:fragment="navigation" class="navbar navbar-expand-lg bg-nav rounded">
         <a th:if="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/}">Home</a>
-        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/home}">Home</a>
-        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/product/product-add}">Create
-            Product</a>
-        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/plant/plant-add}">Create
-            Plant</a>
-        <a th:unless="${@loggedUser.isEmpty()}" class="nav-link text-white active h5" th:href="@{/shop/shop-add}">Create
-            Shop</a>
+        <th:block th:unless="${@loggedUser.isEmpty()}">
+                <a class="nav-link text-white active h5" th:href="@{/home}"
+                   th:text="${@loggedUser.getUsername}">User:</a>
+            <!--        <a class="nav-link text-white active h5" th:href="@{/home}">Home</a>-->
+            <a class="nav-link text-white active h5"
+               th:href="@{/product/product-add}">Create
+                Product</a>
+            <a class="nav-link text-white active h5" th:href="@{/plant/plant-add}">Create
+                Plant</a>
+            <a class="nav-link text-white active h5" th:href="@{/shop/shop-add}">Create
+                Shop</a>
+            <a class="nav-link text-white active h5" th:href="@{/user/change-password}">Change Password</a>
+        </th:block>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -37,9 +44,6 @@
                     </li>
                 </th:block>
                 <th:block th:unless="${@loggedUser.isEmpty()}">
-                    <li class="nav-item col-md-4">
-                        <a class="nav-link text-white active h5" th:href="@{/user/change-password}">Change Password</a>
-                    </li>
                     <li class="nav-item col-md-4">
                         <a class="nav-link text-white active h5" th:href="@{/user/logout}">Logout</a>
                     </li>
