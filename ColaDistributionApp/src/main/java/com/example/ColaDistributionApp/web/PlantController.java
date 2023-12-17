@@ -1,8 +1,6 @@
 package com.example.ColaDistributionApp.web;
 
-import com.example.ColaDistributionApp.models.dto.LoggedUser;
 import com.example.ColaDistributionApp.models.dto.PlantDTO;
-import com.example.ColaDistributionApp.models.entity.Plant;
 import com.example.ColaDistributionApp.services.PlantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/plant")
@@ -49,10 +45,5 @@ public class PlantController {
     @ModelAttribute(name = "plantDTO")
     public PlantDTO plantDTO() {
         return new PlantDTO();
-    }
-
-    @ModelAttribute(name = "allPlants")
-    public List<Plant> plants(){
-        return this.plantService.findAllByUserId();
     }
 }

@@ -74,4 +74,9 @@ public class Product extends BaseEntity{
         this.category = category;
         return this;
     }
+
+    @Override
+    public String toString(){
+        return String.format("%s - %s = %d(%s) /%.2f Lv/", name, category, quantity, pack, price);
+    }
 }

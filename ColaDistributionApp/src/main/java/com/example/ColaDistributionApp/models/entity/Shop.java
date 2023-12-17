@@ -64,4 +64,9 @@ public class Shop extends BaseEntity{
         this.city = city;
         return this;
     }
+
+    @Override
+    public String toString(){
+        return String.format("Name: %s - %s    (%s)", name, classification, city);
+    }
 }

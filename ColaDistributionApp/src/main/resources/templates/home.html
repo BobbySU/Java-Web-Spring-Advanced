@@ -22,12 +22,11 @@
                     <h3 class="mySticky bg-gray text-dark rounded">
                         <img class="mr-2" src="/img/drink.png" alt="Food" width="50px" height="50px">
                         Plants</h3>
-                    <div class="mt-3 rounded badge-info">
+                    <div class="mt-3 rounded badge-info text-left">
                         <span>Name: {name} Price: {price} lv</span>
                         <ul th:each="plant : ${allPlants}">
                            <li th:text="${plant.toString()}"></li>
                         </ul>
-
                         <a class="ml-3 text-danger" href="/">Buy</a>
                     </div>
                 </div>
@@ -41,8 +40,11 @@
                     <h3 class="mySticky bg-gray text-dark rounded">
                         <img class="mr-2" src="/img/food.png" alt="Food" width="50px" height="50px">
                         Shops</h3>
-                    <div class="mt-3 rounded badge-warning">
+                    <div class="mt-3 rounded badge-warning text-left">
                         <span>Name: {name} Price: {price} lv</span>
+                        <ul th:each="shop : ${allShops}">
+                            <li th:text="${shop.toString()}"></li>
+                        </ul>
                         <a class="ml-3 text-danger" href="/">Buy</a>
                     </div>
                 </div>
@@ -56,8 +58,11 @@
                     <h3 class="mySticky bg-gray text-dark rounded">
                         <img class="mr-2" src="/img/household.png" alt="Food" width="50px" height="50px">
                         Products</h3>
-                    <div class="mt-3 rounded badge-success">
+                    <div class="mt-3 rounded badge-success text-left">
                         <span>Name: {name} Price: {price} lv</span>
+                        <ul th:each="product : ${allProducts}">
+                            <li th:text="${product.toString()}"></li>
+                        </ul>
                         <a class="ml-3 text-danger" href="/">Buy</a>
                     </div>
                 </div>
@@ -76,6 +81,9 @@
                         Orders</h3>
                     <div class="mt-3 rounded badge-info">
                         <span>Name: {name} Price: {price} lv</span>
+                        <ul th:each="order : ${allOrders}">
+                            <li th:text="${order.toString()}"></li>
+                        </ul>
                         <a class="ml-3 text-danger" href="/">Buy</a>
                     </div>
                 </div>

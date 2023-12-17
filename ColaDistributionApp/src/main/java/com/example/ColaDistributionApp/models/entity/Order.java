@@ -39,4 +39,9 @@ public class Order extends BaseEntity{
         this.buyer = buyer;
         return this;
     }
+
+    @Override
+    public String toString(){
+        return String.format("%s  /%s/", created, buyer);
+    }
 }

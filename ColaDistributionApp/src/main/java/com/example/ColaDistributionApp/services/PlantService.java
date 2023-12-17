@@ -41,10 +41,9 @@ public class PlantService {
     }
 
     public List<Plant> findAllByUserId() {
-        if(loggedUser.isEmpty()){
+        if (loggedUser.isEmpty()) {
             return List.of();
         }
-        this.plantRepository.findAll();
-        return null;
+        return this.plantRepository.findAll();
     }
 }

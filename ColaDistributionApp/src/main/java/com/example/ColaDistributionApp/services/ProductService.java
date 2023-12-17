@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -40,5 +42,12 @@ public class ProductService {
                 .build(), Product.class);
 
         this.productRepository.saveAndFlush(product);
+    }
+
+    public List<Product> findAllByUserId() {
+        if (loggedUser.isEmpty()) {
+            return List.of();
+        }
+        return this.productRepository.findAll();
     }
 }
