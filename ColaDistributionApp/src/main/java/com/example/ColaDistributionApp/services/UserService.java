@@ -63,7 +63,7 @@ public class UserService {
 
     @PostConstruct
     private void postConstructUser() {
-        if (userRepository.count() < 5) {
+        if (userRepository.count() == 0) {
             this.userRepository.saveAndFlush(this.modelMapper.map(UserDTO.builder()
                     .username("bobby1")
                     .password(passwordEncoder.encode("12345"))
