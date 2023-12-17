@@ -36,6 +36,15 @@ public class User extends BaseEntity{
     private List<Shop> shops;
     private List<Order> orders;
     private List<Product> products;
+    @Column(nullable = false, unique = true)
+    public String getEmail() {
+        return email;
+    }
+
+    public User setEmail(String email) {
+        this.email = email;
+        return this;
+    }
 
     @OneToMany(mappedBy = "user")
     public List<Plant> getPlants() {

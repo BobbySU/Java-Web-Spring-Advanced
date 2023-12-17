@@ -55,6 +55,10 @@ public class UserService {
         return this.modelMapper.map(this.userRepository.findById(id).orElse(new User()), UserDTO.class);
     }
 
+    public UserDTO findUserByEmail(String email) {
+        return this.modelMapper.map(this.userRepository.findUserByEmail(email).orElse(new User()), UserDTO.class);
+    }
+
     public void changePass(UserPassChangeDTO userPassChangeDTO) {
         User changeUser = userRepository.findById(loggedUser.getId()).get();
         changeUser.setPassword(passwordEncoder.encode(userPassChangeDTO.getPassword()));

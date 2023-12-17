@@ -2,6 +2,7 @@ package com.example.ColaDistributionApp.models.dto;
 
 import com.example.ColaDistributionApp.models.entity.enums.Position;
 import com.example.ColaDistributionApp.models.entity.enums.Role;
+import com.example.ColaDistributionApp.validation.EmailValid;
 import com.example.ColaDistributionApp.validation.PasswordMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +15,7 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @PasswordMatch
+@EmailValid
 public class UserRegisterDTO {
     @Size(min = 5, max = 10)
     @NotNull
