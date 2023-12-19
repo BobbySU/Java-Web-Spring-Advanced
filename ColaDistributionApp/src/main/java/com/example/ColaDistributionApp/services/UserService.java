@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Random;
 
 import static com.example.ColaDistributionApp.models.entity.enums.Position.MANUFACTURER;
 import static com.example.ColaDistributionApp.models.entity.enums.Position.SELLER;
@@ -22,28 +23,44 @@ public class UserService {
     private final ModelMapper modelMapper;
     private final LoggedUser loggedUser;
     private final PasswordEncoder passwordEncoder;
+    private final EmailService emailService;
 
     @Autowired
-    public UserService(UserRepository userRepository, ModelMapper modelMapper, LoggedUser loggedUser, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, ModelMapper modelMapper, LoggedUser loggedUser, PasswordEncoder passwordEncoder, EmailService emailService) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.loggedUser = loggedUser;
         this.passwordEncoder = passwordEncoder;
+        this.emailService = emailService;
     }
 
-    public void registerUser(UserRegisterDTO userRegisterDTO){
+    public void registerUser(UserRegisterDTO userRegisterDTO) {
         User user = this.modelMapper.map(userRegisterDTO, User.class);
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+//       --- if you want to send to real Mail---
+//        this.emailService.sendEmail(user.getEmail(),user.getUsername(),
+//        "Hello You have successfully registered " + user.getFullName());
+//        --- or ---
+        this.emailService.sendEmail(("colaapp12@gmail.com"), user.getUsername(),
+                "Hello " + user.getUsername() + " You have successfully registered.");
         this.userRepository.saveAndFlush(user);
     }
 
-    public void loginUser(UserLoginDTO userLoginDTO){
+    public void loginUser(UserLoginDTO userLoginDTO) {
         User user = this.userRepository.findByUsername(userLoginDTO.getUsername()).get();
-        this.loggedUser.setId(user.getId());
         this.loggedUser.setUsername(user.getUsername());
+        Random random = new Random();
+        this.loggedUser.setSecureKey(String.format("%06d", random.nextInt(1000000)));
+        this.emailService.sendEmail(("colaapp12@gmail.com"), loggedUser.getUsername(),
+                "Hello " + user.getUsername() + " Your secret key is " + loggedUser.getSecureKey());
     }
 
-    public void logoutUser(){
+    public void secure() {
+        User user = this.userRepository.findByUsername(loggedUser.getUsername()).get();
+        this.loggedUser.setId(user.getId());
+        this.loggedUser.setSecureKey(null);
+    }
+    public void logoutUser() {
         loggedUser.clearUser();
     }
 

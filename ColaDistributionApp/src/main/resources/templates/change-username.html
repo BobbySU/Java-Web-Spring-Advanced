@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/fragmet::head"></head>
+<head th:replace="fragments/fragment::head"></head>
 <body>
 <header>
-    <nav th:replace="fragments/fragmet::navigation" class="navbar navbar-expand-lg bg-nav rounded"></nav>
+    <nav th:replace="fragments/fragment::navigation" class="navbar navbar-expand-lg bg-nav rounded"></nav>
 </header>
 <main th:unless="${@loggedUser.isEmpty()}">
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Change Username</span></h1>
@@ -22,7 +22,7 @@
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="password" class="h4 mb-2">New Password</label>
+                <label for="password" class="h4 mb-2">Password</label>
             </div>
             <input type="password" class="form-control" id="password" name="password" th:value="*{password}"/>
             <small th:if="${#fields.hasErrors('password')}" class="text-danger">Password error message</small>
@@ -35,6 +35,6 @@
 
 </main>
 
-<footer th:replace="fragments/fragmet::footer" class="footer bg-transparent  py-2"></footer>
+<footer th:replace="fragments/fragment::footer" class="footer bg-transparent  py-2"></footer>
 </body>
 </html>

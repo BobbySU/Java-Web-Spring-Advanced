@@ -62,7 +62,7 @@ public class UserController {
         }
         this.userService.loginUser(userLoginDTO);
 
-        return "redirect:/home";
+        return "redirect:secure-key";
     }
 
     @GetMapping("/logout")
@@ -111,6 +111,25 @@ public class UserController {
         return "redirect:/home";
     }
 
+    @GetMapping("/secure-key")
+    public String getSecureKey() {
+        return "secure-key";
+    }
+
+    @PostMapping("/secure-key")
+    public String postSecureKey(@Valid @ModelAttribute(name = "secureKeyDTO") SecureKeyDTO secureKeyDTO,
+                                 BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("secureKeyDTO", secureKeyDTO)
+                    .addFlashAttribute("org.springframework.validation.BindingResult.secureKeyDTO",
+                            bindingResult);
+            return "redirect:secure-key";
+        }
+        this.userService.secure();
+        return "redirect:/home";
+    }
+
     @ModelAttribute(name = "userRegisterDTO")
     public UserRegisterDTO userRegisterDTO() {
         return new UserRegisterDTO();
@@ -129,5 +148,10 @@ public class UserController {
     @ModelAttribute(name = "userNameChangeDTO")
     public UserNameChangeDTO userNameChangeDTO() {
         return new UserNameChangeDTO();
+    }
+
+    @ModelAttribute(name = "secureKeyDTO")
+    public SecureKeyDTO secureKeyDTO() {
+        return new SecureKeyDTO();
     }
 }

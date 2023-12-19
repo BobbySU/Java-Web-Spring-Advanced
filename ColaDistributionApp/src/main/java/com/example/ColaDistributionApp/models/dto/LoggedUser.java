@@ -12,6 +12,7 @@ import lombok.Setter;
 public class LoggedUser {
     private String id;
     private String username;
+    private String secureKey;
     public boolean isEmpty(){
         return this.id == null;
     }
