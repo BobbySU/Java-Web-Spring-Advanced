@@ -37,12 +37,10 @@ public class UserService {
     public void registerUser(UserRegisterDTO userRegisterDTO) {
         User user = this.modelMapper.map(userRegisterDTO, User.class);
         user.setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
-//       --- if you want to send to real Mail---
-//        this.emailService.sendEmail(user.getEmail(),user.getUsername(),
-//        "Hello You have successfully registered " + user.getFullName());
-//        --- or ---
-        this.emailService.sendEmail(("colaapp12@gmail.com"), user.getUsername(),
+//        --- if you want to send to real Mail---
 //        this.emailService.sendEmail((user.getEmail()), user.getUsername(),
+//        --- or default---
+        this.emailService.sendEmail(("colaapp12@gmail.com"), user.getUsername(),
                 "Hello " + user.getUsername() + " You have successfully registered.");
         this.userRepository.saveAndFlush(user);
     }
@@ -52,8 +50,10 @@ public class UserService {
         this.loggedUser.setUsername(user.getUsername());
         Random random = new Random();
         this.loggedUser.setSecureKey(String.format("%06d", random.nextInt(1000000)));
-        this.emailService.sendEmail(("colaapp12@gmail.com"), loggedUser.getUsername(),
+//        --- if you want to send to real Mail---
 //        this.emailService.sendEmail((user.getEmail()), user.getUsername(),
+//        --- or default---
+        this.emailService.sendEmail(("colaapp12@gmail.com"), loggedUser.getUsername(),
                 "Hello " + user.getUsername() + " Your secret key is " + loggedUser.getSecureKey());
     }
 
