@@ -41,8 +41,8 @@ public class UserService {
 //        this.emailService.sendEmail(user.getEmail(),user.getUsername(),
 //        "Hello You have successfully registered " + user.getFullName());
 //        --- or ---
-//        this.emailService.sendEmail(("colaapp12@gmail.com"), user.getUsername(),
-        this.emailService.sendEmail((user.getEmail()), user.getUsername(),
+        this.emailService.sendEmail(("colaapp12@gmail.com"), user.getUsername(),
+//        this.emailService.sendEmail((user.getEmail()), user.getUsername(),
                 "Hello " + user.getUsername() + " You have successfully registered.");
         this.userRepository.saveAndFlush(user);
     }
@@ -52,8 +52,8 @@ public class UserService {
         this.loggedUser.setUsername(user.getUsername());
         Random random = new Random();
         this.loggedUser.setSecureKey(String.format("%06d", random.nextInt(1000000)));
-//        this.emailService.sendEmail(("colaapp12@gmail.com"), loggedUser.getUsername(),
-        this.emailService.sendEmail((user.getEmail()), user.getUsername(),
+        this.emailService.sendEmail(("colaapp12@gmail.com"), loggedUser.getUsername(),
+//        this.emailService.sendEmail((user.getEmail()), user.getUsername(),
                 "Hello " + user.getUsername() + " Your secret key is " + loggedUser.getSecureKey());
     }
 
