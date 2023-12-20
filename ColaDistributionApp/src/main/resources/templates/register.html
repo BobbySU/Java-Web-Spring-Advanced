@@ -5,7 +5,7 @@
 <header>
     <nav th:replace="fragments/fragment::navigation" class="navbar navbar-expand-lg bg-nav rounded"></nav>
 </header>
-<main>
+<main th:if="${@loggedUser.isEmpty()}">
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
     <form th:action="@{/user/register}" th:method="POST" th:object="${userRegisterDTO}"
