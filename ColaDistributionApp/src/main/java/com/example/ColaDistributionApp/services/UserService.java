@@ -50,9 +50,9 @@ public class UserService {
         this.loggedUser.setUsername(user.getUsername());
         Random random = new Random();
         this.loggedUser.setSecureKey(String.format("%06d", random.nextInt(1000000)));
-        --- if you want to send to real Mail---
-        this.emailService.sendEmail((user.getEmail()), user.getUsername(),
-        --- or default---
+//        --- if you want to send to real Mail---
+//        this.emailService.sendEmail((user.getEmail()), user.getUsername(),
+//        --- or default---
         this.emailService.sendEmail(("colaapp12@gmail.com"), loggedUser.getUsername(),
                 "Hello " + user.getUsername() + " Your secret key is " + loggedUser.getSecureKey());
     }
